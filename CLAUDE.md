@@ -107,23 +107,3 @@ Both tracks train both **XGBoost** (`n_estimators=200, max_depth=4, learning_rat
 
 ---
 
-## Results
-
-### Retest (held-out) performance
-
-| Model | Features | Accuracy | ROC-AUC | MAL Recall | MAL Precision |
-|-------|----------|----------|---------|------------|---------------|
-| XGBoost | Sequence (6-gram) | 72.1% | 73.1% | 45.7% | 98.0% |
-| Random Forest | Sequence (6-gram) | 72.6% | 73.0% | 47.6% | 96.2% |
-| **XGBoost** | **Structural (14 features)** | **82.2%** | **91.1%** | **94.3%** | **76.2%** |
-| Random Forest | Structural (14 features) | 79.8% | 92.0% | 93.3% | 73.7% |
-
-**Key finding:** structural features generalise far better to unseen kits than sequence-based features. Malicious pages have short, dense signatures (mean 1,173 chars vs 8,649 for no-form); `form_density` and `signature_length` are the strongest discriminators.
-
-### Label-noise observation
-
-10 `NO_FORM` retest rows contained "login" in their URL. 4 had real login structure (`has_form=1`, `has_input=1`) and have been relabeled to `TEST_LOGIN_FORM`. The remaining 6 are parked/taken-down URLs with no DOM structure and are correctly labeled `NO_FORM`.
-
-### Threshold
-
-Default 0.5 is the accuracy-optimal operating point (confirmed via GroupKFold threshold sweep). To trade precision for recall, lower the threshold — a missed malicious login form is costlier than a false positive.
