@@ -29,7 +29,3 @@ Comparison (optional, requires all above):
     09_accuracy_comparison.ipynb
 
 
-Best Model
-----------
-Structural XGBoost — 82.2% accuracy, 91.1% ROC-AUC, 94.3% malicious recall on
-held-out retest data.
