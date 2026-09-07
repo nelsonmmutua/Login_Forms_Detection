@@ -16,3 +16,12 @@ venv/
 # IDE
 .vscode/
 .idea/
+
+# MLflow runtime artifacts
+mlflow.db
+mlruns/
+notebooks/sequence_model/mlruns/
+notebooks/structural_model/mlruns/
+
+# Generated outputs
+*.xlsx
